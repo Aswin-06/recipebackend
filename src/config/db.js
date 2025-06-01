@@ -3,12 +3,14 @@ require('dotenv').config();
 
 const raw = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON;
 
-// Safety check in case the env var is missing
+console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
+
 if (!raw) {
   throw new Error("Missing GOOGLE_APPLICATION_CREDENTIALS_JSON env variable");
 }
 
 const serviceAccount = JSON.parse(raw.replace(/\\n/g, '\n'));
+console.log(serviceAccount);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
